@@ -1,0 +1,22 @@
+/*
+Tutorial from  freeCodeCamp.org
+Kotlin Course - Tutorial for Beginners
+https://www.youtube.com/watch?v=F9UC9DY-vIU
+ */
+
+//You can use a function as a paramtere
+                                            //Predicate is name, takes in string and returns bool
+fun printFilteredString(list:List<String>,predicate:(String) -> Boolean){
+    list.forEach{
+       if(predicate(it)){
+               println(it)
+           }
+    }
+}
+
+
+fun main() {
+    val name = listOf("Seba", "Keba", "Heba")
+    //So we define the predicate function here in the call, here looking only if the word in the list starts with S
+    printFilteredString(name, {it.startsWith(prefix = "S")})
+}
