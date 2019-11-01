@@ -1,0 +1,8 @@
+PNG/BMP -> Vector File
+With Vector images we can scale them without worrying about the resolution while PNG/BMP would either scale horribly or require multiple images in diffrent resolutions. 
+
+To Convert a PNG/BMP file throw it into Inkscape 
+	Click Ctrl+A which will select the image 
+	Go to Path->Trace Bitmap
+		Select Color, and Remove Background (Seems to loose some color) 
+	Save As inkscpe.svg

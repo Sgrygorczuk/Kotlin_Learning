@@ -1,0 +1,35 @@
+Video #1:
+You have two main files the MyActivity.kt that's found in the App->Jave->Domain folder which will let you program the functionality of the buttons in Kotlin and the then content_main.xml which will display the layout of the phone up which is stored in the App->Res->Layout.
+
+To add a button go to main_content.xml you can drag a button from the pallet menu onto the layout. 
+The button has an attribute menu when selected, this information is also stored in the other folders inside of Res. 
+The Button will have four circles that will allow you to lock the button to whatever side of the screen you would like. 
+
+You will need to have an emulator or a real phone attached to run the program. For the main part, we will use ADV Emulator with a Pixel 2 XL on Pie OS. 
+
+Video #2:
+To make the button functional first go to the main_content.xml and select the button, give it an id you wish to refer it to by.
+Then go to the MainActivity, when you start typing the id of the button and select to autocomplete you will get the necessary libraries included in the file. 
+Then you can give it functionality like .setOnClick{} which allows us to input a function that will execute whenever the button is pressed 
+
+You can modify all of the colors by going to App->Res->Values->Colors.xml which holds all the colors for all the object in the layout and change them manually there. 
+
+Video#3:
+
+We will want to create a new screen for our App, a screen is called an activity. 
+
+We will start by creating a new class and then extending the AppCompatActivity() to our class so we have its functionality. If we use auto-complete it will include the necessary library. 
+
+Next, we will want to overwrite the onCreate() function so that we can have the screen be made when necessary. Get the one that has Bundle? in the autocomplete.
+
+Next, you will want to set up the layout of this new screen so you will do setContentView(R.layout.activity_about_me) where the activity_about_me refers to activity_about_me.xml that works the same as the main_conent.xml. If you haven't created on yet the text will be red you click on the light bulb and it will auto-create it.
+
+Next, you want to go to the class name if it is underlined you probably need to add it to the manifest (a thing that keeps track of all of the screens) click on it wait for the light bulb then click it and select add to manifest. 
+
+Now we can go back to the original screen in MainActiviy.kt and we can add the functionality to goto another screen 
+
+Video #4: 
+We will play with text inputs now so we create a new project and this time we throw in Plain Text from the Text in Pallet, we hooked it onto the top, left and right but if we want it to spread the boarders of the text we have to go to the attributes.
+
+
+In attributes we have this box called Constraint Widget click on it, it has three modes you can play with 
