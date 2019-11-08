@@ -4,7 +4,7 @@ Good First Step to Get to Know the Language:
 Tutorial from freeCodeCamp.org, Kotlin Course - Tutorial for Beginners
 https://www.youtube.com/watch?v=F9UC9DY-vIU
 
-Great First Step to get to know Android Studio: 
+Good First Step to get to know Android Studio, gets a bit unclearn when comes to Table: 
 Tutorial from  Daniel Malone, Android Studio Tutorial (2019 Edition)
 https://www.youtube.com/watch?v=g9YblXBQ5uU&list=PLt72zDbwBnAWW2F4c2VvUcAsJTMWJT4PJ
  
