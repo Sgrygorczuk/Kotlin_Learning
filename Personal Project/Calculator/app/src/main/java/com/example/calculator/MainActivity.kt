@@ -1,10 +1,15 @@
 package com.example.calculator
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log.d
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Math.sqrt
+import java.math.BigDecimal
+import java.text.DecimalFormat
+import kotlin.math.truncate
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,51 +20,71 @@ class MainActivity : AppCompatActivity() {
         var inputOne : String = ""
         var inputTwo : String = ""
         var operation : String = ""
+        var inputString : String = ""
+        var resultString : String = ""
         var operationPerformed : Boolean = false
+
+
+        fun performOperation() {
+            if ((inputOne.toDoubleOrNull() is Double) && (inputTwo.toDoubleOrNull() is Double)
+            && (inputOne != "")){
+                when (operation) {
+                    //Then list all the possiblites and their results using the ->
+                    "/" -> resultString = (inputTwo.toDouble() / inputOne.toDouble()).toString()
+                    "*" -> resultString = (inputTwo.toDouble() * inputOne.toDouble()).toString()
+                    "-" -> resultString = (inputTwo.toDouble() - inputOne.toDouble()).toString()
+                    "+" -> resultString = (inputTwo.toDouble() + inputOne.toDouble()).toString()
+                    else -> null
+                }
+                resultsView.text = resultString
+            }
+            else resultsView.text = ""
+        }
+
+        fun performEqual(){
+            if ((inputOne.toDoubleOrNull() is Double) && (inputTwo.toDoubleOrNull() is Double)
+                && (inputOne != "")) {
+                inputTwo = ""
+                inputOne = resultString
+                operation = ""
+                operationPerformed = true
+                resultsView.text = ""
+                calculatorView.setTextColor(Color.parseColor("#36C23B"))
+                calculatorView.text = resultString
+            }
+        }
 
         //The addChar function updates the textView with whatever
         fun addChar(choice: String) : Unit {
             //Checks if a operation has been perfromed recently
             //If it has we will wipe the current number from screen and replace it
-            if(operationPerformed){
-                inputOne = ""
-                operationPerformed = false
+            if(inputString.length == 9) {
+                Toast.makeText(this, "You can have a max of 9 characters", Toast.LENGTH_SHORT).show()
             }
-            when(choice)
-            {
-                //Then list all the possiblites and their results using the ->
-                "0" -> inputOne += "0"
-                "1" -> inputOne += "1"
-                "2" -> inputOne += "2"
-                "3" -> inputOne += "3"
-                "4" -> inputOne += "4"
-                "5" -> inputOne += "5"
-                "6" -> inputOne += "6"
-                "7" -> inputOne += "7"
-                "8" -> inputOne += "8"
-                "9" -> inputOne += "9"
-                "." -> if(inputOne == "") inputOne += "0." else inputOne +=  "."
-                else ->  null
-            }
-            calculatorView.text = inputOne
-        }
-
-        fun performOperation(){
-            if((inputOne.toDoubleOrNull() is Double) && (inputTwo.toDoubleOrNull() is Double)){
-                when(operation)
-                {
-                    //Then list all the possiblites and their results using the ->
-                    "0" -> inputOne = (inputTwo.toDouble() / inputOne.toDouble()).toString()
-                    "1" -> inputOne = (inputTwo.toDouble() * inputOne.toDouble()).toString()
-                    "2" -> inputOne = (inputTwo.toDouble() - inputOne.toDouble()).toString()
-                    "3" -> inputOne = (inputTwo.toDouble() + inputOne.toDouble()).toString()
-                    else ->  null
-                }
-                if(inputOne.toIntOrNull() is Int) inputOne = inputOne.toInt().toString()
-                inputTwo = ""
-                operation = ""
-                operationPerformed = true
-                calculatorView.text = inputOne
+                else {
+                    if (operationPerformed) {
+                        inputOne = ""
+                        operationPerformed = false
+                        calculatorView.setTextColor(Color.parseColor("#FFFFFF"))
+                    }
+                    when (choice) {
+                        //Then list all the possiblites and their results using the ->
+                        "0" -> inputOne += "0"
+                        "1" -> inputOne += "1"
+                        "2" -> inputOne += "2"
+                        "3" -> inputOne += "3"
+                        "4" -> inputOne += "4"
+                        "5" -> inputOne += "5"
+                        "6" -> inputOne += "6"
+                        "7" -> inputOne += "7"
+                        "8" -> inputOne += "8"
+                        "9" -> inputOne += "9"
+                        "." -> if (inputOne == "") inputOne += "0." else inputOne += "."
+                        else -> null
+                    }
+                    performOperation()
+                    inputString = inputTwo + operation + inputOne
+                    calculatorView.text = inputString
             }
         }
 
@@ -126,7 +151,9 @@ class MainActivity : AppCompatActivity() {
             inputOne = ""
             inputTwo = ""
             operation = ""
-            calculatorView.text = inputOne
+            inputString = ""
+            performOperation()
+            calculatorView.text = inputString
         }
 
         //Operation Buttons
@@ -134,48 +161,64 @@ class MainActivity : AppCompatActivity() {
             d("Admin", "MainActivity: divButton was clicked")
             inputTwo = inputOne
             inputOne = ""
-            operation = "0"
+            operation = "/"
+            performOperation()
+            inputString = inputTwo + operation + inputOne
+            calculatorView.text = inputString
         }
 
         timesButton.setOnClickListener {
             d("Admin", "MainActivity: timesButton was clicked")
             inputTwo = inputOne
             inputOne = ""
-            operation = "1"
+            operation = "*"
+            performOperation()
+            inputString = inputTwo + operation + inputOne
+            calculatorView.text = inputString
         }
 
         minusButton.setOnClickListener {
             d("Admin", "MainActivity: minusButton was clicked")
             inputTwo = inputOne
             inputOne = ""
-            operation = "2"
+            operation = "-"
+            performOperation()
+            inputString = inputTwo + operation + inputOne
+            calculatorView.text = inputString
         }
 
         plusButton.setOnClickListener {
             d("Admin", "MainActivity: divButton was clicked")
             inputTwo = inputOne
             inputOne = ""
-            operation = "3"
+            operation = "+"
+            performOperation()
+            inputString = inputTwo + operation + inputOne
+            calculatorView.text = inputString
         }
 
         equalButton.setOnClickListener {
             d("Admin", "MainActivity: divButton was clicked")
-            performOperation()
+            performEqual()
         }
 
         //Operation on inputOne only
         radButton.setOnClickListener {
             d("Admin", "MainActivity: radButton was clicked")
-            inputOne = (sqrt(inputOne.toDouble())).toString()
-            operationPerformed = true
-            calculatorView.text = inputOne
+            if(inputOne.toDoubleOrNull() is Double){
+                    inputOne = (sqrt(inputOne.toDouble())).toString()
+                    operationPerformed = true
+                    calculatorView.text = inputOne
+                }
         }
 
         negButton.setOnClickListener {
             d("Admin", "MainActivity: negButton was clicked")
-            if(inputOne.contains('-'))  inputOne = inputOne.replace("-", "")
+            if(inputOne.contains('-')) inputOne = inputOne.replace("-", "")
             else inputOne = "-$inputOne"
-            calculatorView.text = inputOne
+            performOperation()
+            inputString = inputTwo + operation + inputOne
+            calculatorView.text = inputString
         }
 
 
