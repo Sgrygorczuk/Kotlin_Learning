@@ -6,3 +6,6 @@ To Convert a PNG/BMP file throw it into Inkscape
 	Go to Path->Trace Bitmap
 		Select Color, and Remove Background (Seems to loose some color) 
 	Save As inkscpe.svg
+
+
+To upload a svg file to andoird Studio go to drawble folder click New->Vectoe Asset and it will allow you to import the vector image. This will give you a new xml file. 

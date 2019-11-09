@@ -1,0 +1,22 @@
+To create an animation you simiply go to drawbles and create a new xml file
+
+There you will change it from <selector to <animation-list
+And you will proccedd to list the items you wish to be part of that list 
+
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/ic_space_bg_one" android:duration="500"/>
+    <item android:drawable="@drawable/ic_space_bg_two" android:duration="200"/>
+    <item android:drawable="@drawable/ic_space_bg_three" android:duration="200"/>
+ </animation-list>
+
+The duration is around half a second 
+
+Then you will want to place the items into a activity as an imageView which is connected to the aniamtion xml file. 
+
+Lastly to actiave the animation you will have to go to the Kotlin file that's connected to that activity page and write 
+ 
+	Id		
+(bg_animation.drawable as AnimationDrawable).start()
+
+This will make the animation run indeifently 
