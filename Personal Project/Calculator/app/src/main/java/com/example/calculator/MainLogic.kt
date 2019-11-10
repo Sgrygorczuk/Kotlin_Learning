@@ -1,6 +1,7 @@
 package com.example.calculator
 
 import android.graphics.Color
+import android.util.Log.d
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -22,8 +23,13 @@ class MainLogic {
                 "*" -> resultString = (inputTwo.toDouble() * inputOne.toDouble()).toString()
                 "-" -> resultString = (inputTwo.toDouble() - inputOne.toDouble()).toString()
                 "+" -> resultString = (inputTwo.toDouble() + inputOne.toDouble()).toString()
-                else -> null
             }
+
+            if(resultString.toDouble() % 1.0 == 0.0)
+            {
+                resultString = resultString.replaceFirst(".0", "")
+            }
+
             return resultString
         }
         else return ""
@@ -42,10 +48,9 @@ class MainLogic {
 
     //The addChar function updates the textView with whatever
     fun addChar(choice: String) : String {
-        var returnInfo = mutableListOf("", "", "")
         //Checks if a operation has been perfromed recently
         //If it has we will wipe the current number from screen and replace it
-        if(inputString.length != 9){ //Then list all the possiblites and their results using the ->//calculatorView.setTextColor(Color.parseColor("#FFFFFF"))
+        if(inputString.length < 9){ //Then list all the possiblites and their results using the ->//calculatorView.setTextColor(Color.parseColor("#FFFFFF"))
             when (choice) {
                 //Then list all the possiblites and their results using the ->
                 "0" -> inputOne += "0"
@@ -59,14 +64,19 @@ class MainLogic {
                 "8" -> inputOne += "8"
                 "9" -> inputOne += "9"
                 "." -> if (inputOne == "") inputOne += "0." else inputOne += "."
-                else -> null
             }
+
+            if(inputOne.length >= 2 && inputOne[0] == '0'  && inputOne[1] != '.') {
+                inputOne = inputOne.replaceFirst("0", "")
+            }
+
             inputString = inputTwo + operation + inputOne
+
         }
         return inputString
     }
 
-    fun isMaxLenght() : Boolean { return inputString.length == 9 }
+    fun isMaxLenght() : Boolean { return inputString.length >= 9 }
 
     fun clear() : Unit{
         inputOne = ""
@@ -76,8 +86,10 @@ class MainLogic {
     }
 
     fun operationWasPerformed() : String {
-        inputOne = ""
-        operationPerformed = false
+        if(operationPerformed == true) {
+            inputOne = ""
+            operationPerformed = false
+        }
         return "#FFFFFF"
     }
 
@@ -91,7 +103,6 @@ class MainLogic {
                 "*" -> operation = "*"
                 "-" -> operation = "-"
                 "+" -> operation = "+"
-
             }
         }
         inputString = inputTwo + operation + inputOne
@@ -103,6 +114,5 @@ class MainLogic {
         else inputOne = "-$inputOne"
         inputString = inputTwo + operation + inputOne
         return inputString
-
     }
 }

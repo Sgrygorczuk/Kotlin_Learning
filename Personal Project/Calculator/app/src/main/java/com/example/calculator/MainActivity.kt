@@ -7,6 +7,13 @@ import android.util.Log.d
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
 import java.lang.Math.sqrt
+import android.view.Gravity
+import androidx.core.app.ComponentActivity
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,11 +23,19 @@ class MainActivity : AppCompatActivity() {
 
         val logicUnit = MainLogic()
 
+        fun showToast() : Unit {
+            if (logicUnit.isMaxLenght()) {
+                val toast = Toast.makeText(this@MainActivity, "Max Input of 9", Toast.LENGTH_SHORT)
+                toast.setGravity(Gravity.CENTER, 0, 0)
+                toast.show()
+            }
+        }
+
         //The string forming buttons
         //Clicking these buttons will lead to updating the current value of the string
         nineButton.setOnClickListener {
             d("Admin", "MainActivity: nineButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("9")
             resultsView.text = logicUnit.performOperation()
@@ -28,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         eightButton.setOnClickListener {
             d("Admin", "MainActivity: eightButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("8")
             resultsView.text = logicUnit.performOperation()
@@ -36,7 +51,7 @@ class MainActivity : AppCompatActivity() {
 
         sevenButton.setOnClickListener {
             d("Admin", "MainActivity: sevenButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("7")
             resultsView.text = logicUnit.performOperation()
@@ -44,7 +59,7 @@ class MainActivity : AppCompatActivity() {
 
         sixButton.setOnClickListener {
             d("Admin", "MainActivity: sixButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("6")
             resultsView.text = logicUnit.performOperation()
@@ -52,7 +67,6 @@ class MainActivity : AppCompatActivity() {
 
         fiveButton.setOnClickListener {
             d("Admin", "MainActivity: fiveButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("5")
             resultsView.text = logicUnit.performOperation()
@@ -60,7 +74,7 @@ class MainActivity : AppCompatActivity() {
 
         fourButton.setOnClickListener {
             d("Admin", "MainActivity: fourButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("4")
             resultsView.text = logicUnit.performOperation()
@@ -68,7 +82,7 @@ class MainActivity : AppCompatActivity() {
 
         threeButton.setOnClickListener {
             d("Admin", "MainActivity: threeButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("3")
             resultsView.text = logicUnit.performOperation()
@@ -76,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         twoButton.setOnClickListener {
             d("Admin", "MainActivity: twoButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("2")
             resultsView.text = logicUnit.performOperation()
@@ -84,7 +98,7 @@ class MainActivity : AppCompatActivity() {
 
         oneButton.setOnClickListener {
             d("Admin", "MainActivity: oneButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("1")
             resultsView.text = logicUnit.performOperation()
@@ -92,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
         zeroButton.setOnClickListener {
             d("Admin", "MainActivity: zeroButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar("0")
             resultsView.text = logicUnit.performOperation()
@@ -100,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
         decimalButton.setOnClickListener {
             d("Admin", "MainActivity: decimalButton was clicked")
-            if(logicUnit.isMaxLenght()) Toast.makeText(this, "Max Input of 9", Toast.LENGTH_SHORT).show()
+            showToast()
             calculatorView.setTextColor(Color.parseColor(logicUnit.operationWasPerformed()))
             calculatorView.text = logicUnit.addChar(".")
             resultsView.text = logicUnit.performOperation()
