@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android RecyclerViewTutorialWithKotlin</string>
+    <string name="apiKey">KofhPJVR9A7k3b3FoDWqPUhoWT8DTptWSXs1c9o4</string>
+    <string name="apiKeyURL">https://api.nasa.gov/planetary/apod?api_key=KofhPJVR9A7k3b3FoDWqPUhoWT8DTptWSXs1c9o4</string>
+</resources>
