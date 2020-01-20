@@ -11,14 +11,14 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
     // The ViewModel maintains a reference to the repository to get data.
     private val repository: HistoryRepository
     // LiveData gives us updated words when they change.
-    val allWords: LiveData<List<HistoryEntry>>
+    val allEntries: LiveData<List<HistoryEntry>>
 
     init {
         // Gets reference to WordDao from WordRoomDatabase to construct
         // the correct WordRepository.
-        val wordsDao = HistoryRoomDataBase.getDatabase(application, viewModelScope).historyDao()
-        repository = HistoryRepository(wordsDao)
-        allWords = repository.allWords
+        val historyDao = HistoryRoomDataBase.getDatabase(application, viewModelScope).historyDao()
+        repository = HistoryRepository(historyDao)
+        allEntries = repository.allEntries
     }
 
     /**
@@ -28,7 +28,11 @@ class HistoryViewModel(application: Application) : AndroidViewModel(application)
      * ViewModels have a coroutine scope based on their lifecycle called viewModelScope which we
      * can use here.
      */
-    fun insert(word: HistoryEntry) = viewModelScope.launch {
-        repository.insert(word)
+    fun insert(historyEntry: HistoryEntry) = viewModelScope.launch {
+        repository.insert(historyEntry)
+    }
+
+    fun clear() = viewModelScope.launch {
+        repository.clear()
     }
 }

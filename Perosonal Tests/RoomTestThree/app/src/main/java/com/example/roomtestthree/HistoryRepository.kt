@@ -6,9 +6,13 @@ class HistoryRepository(private val historyDao: HistoryDao) {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    val allWords: LiveData<List<HistoryEntry>> = historyDao.loadAll()
+    val allEntries: LiveData<List<HistoryEntry>> = historyDao.loadAll()
 
-    suspend fun insert(word: HistoryEntry) {
-        historyDao.insert(word)
+    suspend fun insert(historyEntry: HistoryEntry) {
+        historyDao.insert(historyEntry)
+    }
+
+    suspend fun clear(){
+        historyDao.deleteAll()
     }
 }

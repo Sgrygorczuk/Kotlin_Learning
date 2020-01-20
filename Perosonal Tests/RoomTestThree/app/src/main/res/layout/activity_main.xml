@@ -7,13 +7,42 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/recycler_view">
+
+        <Button
+            android:id="@+id/add_button"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_height="wrap_content"
+            android:onClick="add"
+            android:text="Add" />
+
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:onClick="clear"
+            android:layout_height="wrap_content"
+            android:text="Clear" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

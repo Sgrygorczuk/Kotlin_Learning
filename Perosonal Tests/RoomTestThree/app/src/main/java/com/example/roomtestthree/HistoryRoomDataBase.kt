@@ -22,7 +22,11 @@ abstract class HistoryRoomDataBase : RoomDatabase() {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(context.applicationContext, HistoryRoomDataBase::class.java, "history_database")
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    HistoryRoomDataBase::class.java,
+                    "history_database"
+                )
                     .addCallback(WordDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
@@ -31,7 +35,8 @@ abstract class HistoryRoomDataBase : RoomDatabase() {
             }
         }
 
-        private class WordDatabaseCallback(private val scope: CoroutineScope) : RoomDatabase.Callback() {
+        private class WordDatabaseCallback(private val scope: CoroutineScope) :
+            RoomDatabase.Callback() {
             /**
              * Override the onOpen method to populate the database.
              * For this sample, we clear the database every time it is created or opened.

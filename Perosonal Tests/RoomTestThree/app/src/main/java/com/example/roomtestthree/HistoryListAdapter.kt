@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.history_layout.view.*
 
 
-class HistoryListAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+class HistoryListAdapter(mainActivity: MainActivity) : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
 
     //Holds a list of all of the HistoryEntry Objects
     private var items = emptyList<HistoryEntry>()
@@ -42,8 +42,8 @@ class HistoryViewHolder constructor(itemView : View): RecyclerView.ViewHolder(it
     var resultText = itemView.resultButton
 
     //Connects those layout compoents to the datasource
-    fun bind(histroyEntry : HistoryEntry){
-        inputText.text = histroyEntry.input
-        resultText.text = histroyEntry.result
+    fun bind(historyEntry : HistoryEntry){
+        inputText.text = historyEntry.input
+        resultText.text = historyEntry.result
     }
 }
